@@ -237,4 +237,24 @@ p1 <- predict(m1, newdata=preds)
 plot(p1, col=viridis(100))
 points(species[species$Occurrence == 1,], pch=16)
 
+#pca
+sentpc<-im.pca (sentdol)
+
+# hexagon binning
+library(hexbin)
+dol <- im.import("sentinel.dol")
+
+dol
+
+dol1 = dol[[1]]
+dol2 = dol[[2]]
+plot(dol1, dol2)
+abline(0,1,col="red")
+
+#hexagon binning: add the density of point in certain area beneath the spatial distribution
+dold = as.data.frame(dol1)
+dol2d = as.data.frame(dol2)
+
+hbin = hexbin(dold[[1]], dol2d[[1]], xbins = 40)
+plot(hbin)
 
